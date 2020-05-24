@@ -74,7 +74,7 @@ class SigmoidMultLayerNetwork(MultilayerNetwork):
         result_ssi = self.activationFunction(sum_synapse_input)
         sum_synapse_hidden = np.dot(result_ssi,  self.weights)
         result_ssh = self.activationFunction(sum_synapse_hidden)
-        return round(result_ssh)
+        return result_ssh
         
     #Essa função salva os pesos dentro de um arquivo json que sera usado na classe principal
     def saveData(self, src_file):

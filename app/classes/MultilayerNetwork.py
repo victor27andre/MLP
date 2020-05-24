@@ -4,15 +4,15 @@ import numpy as np
 #Classe abstrata que representa uma rede multicamada
 
 class MultilayerNetwork(object):
-    def __init__(self, input_quantity = 2):
-        self.dataset = {"input": np.array([]), "output": np.array([])}
-        self.hidden_layer_weights = np.array([])
-        self.input_quantity = input_quantity
-        self.hidden_layer_quantity = self.input_quantity
-        self.weights_quantity = self.input_quantity
-        self.weights = np.array([])
-        self.epoch_quantity = 10000
-        self.learning_rate = 0.5
+    def __init__(self, input_quantity = 80):
+        self.dataset = {"input": np.array([]), "output": np.array([])} #data set que vai ser treinado
+        self.hidden_layer_weights = np.array([]) #pesos da camada oculta
+        self.input_quantity = input_quantity #quantidade de entradas
+        self.hidden_layer_quantity = self.input_quantity #a quantidade de camadas ocultas
+        self.weights_quantity = self.input_quantity #quantidades de pesos
+        self.weights = np.array([]) # pesos
+        self.epoch_quantity = 100000 #epocas
+        self.learning_rate = 0.1 #taxa de aprendizagem
         self.momentum = 1
         self.error_rate = None
     

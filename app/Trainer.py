@@ -2,14 +2,14 @@
 
 # Form implementation generated from reading ui file 'treinamento.ui'
 #
-# Created by: PyQt4 UI code generator 4.11.4
+# Created by: PyQt5 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
 
 import sys
 import pandas as pd
-from PyQt4.QtGui import *
-from PyQt4 import QtCore, QtGui
+from PyQt5.QtGui import *
+from PyQt5 import QtCore, QtGui
 from classes.SigmoidMultLayerNetwork import SigmoidMultLayerNetwork
 
 try:
@@ -121,7 +121,7 @@ class Trainer(QtGui.QWidget):
             epochs = int(self.txtEpochs.text())
             train_input = pd.read_csv('../dataset/train-input.csv')
             train_output = pd.read_csv('../dataset/train-output.csv')
-            sgnt = SigmoidMultLayerNetwork(4)
+            sgnt = SigmoidMultLayerNetwork(3)
             sgnt.epoch_quantity = epochs
             sgnt.dataset["input"] = train_input.values
             sgnt.dataset["output"] = train_output.values

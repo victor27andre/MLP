@@ -2,11 +2,11 @@
 
 # Form implementation generated from reading ui file 'main.ui'
 #
-# Created by: PyQt4 UI code generator 4.11.4
+# Created by: PyQt5 UI code generator 4.11.4
 #
 # WARNING! All changes made in this file will be lost!
 
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui
 from Trainer import Trainer
 from classes.SigmoidMultLayerNetwork import SigmoidMultLayerNetwork
 import json
@@ -72,9 +72,9 @@ class Main(QtGui.QWidget):
         self.btnClassify = QtGui.QPushButton(self.widget)
         self.btnClassify.setObjectName(_fromUtf8("btnClassify"))
         self.gridLayout_2.addWidget(self.btnClassify, 3, 0, 1, 1)
-        self.sepal_width = QtGui.QLineEdit(self.widget)
-        self.sepal_width.setObjectName(_fromUtf8("sepal_width"))
-        self.gridLayout_2.addWidget(self.sepal_width, 2, 1, 1, 1)
+        #self.sepal_width = QtGui.QLineEdit(self.widget)
+        #self.sepal_width.setObjectName(_fromUtf8("sepal_width"))
+        #self.gridLayout_2.addWidget(self.sepal_width, 2, 1, 1, 1)
         self.widget_2 = QtGui.QWidget(Form)
         self.widget_2.setGeometry(QtCore.QRect(30, 30, 600, 100))
         self.widget_2.setObjectName(_fromUtf8("widget_2"))
@@ -132,7 +132,7 @@ class Main(QtGui.QWidget):
         self.label.setText(_translate("Form", "Entrada 1", None))
         self.label_2.setText(_translate("Form", "Entrada 2", None))
         self.label_3.setText(_translate("Form", "Entrada 3", None))
-        self.label_4.setText(_translate("Form", "Entrada 4", None))
+        #self.label_4.setText(_translate("Form", "Entrada 4", None))
 
         self.label_5.setText(_translate("Form", "Entradas", None))
         self.label_6.setText(_translate("Form", "Dois ligados", None))
@@ -143,26 +143,26 @@ class Main(QtGui.QWidget):
         self.btnTrain.setText(_translate("Form", "Realizar treinamento", None))
         self.btnTrain.clicked.connect(self.openTrainerScreen)
         self.btnClassify.setText(_translate("Form", "Classificar", None))
-        self.btnClassify.clicked.connect(self.classify)
+        self.btnClassify.clicked.connect(self.classify) #faz a ação de classificar
 
     def classify(self):
-        x1 = int(self.petal_length.text())
-        x2 = int(self.petal_width.text())
-        x3 = int(self.sepal_length.text())
-        x4 = int(self.sepal_width.text())
+        x1 = float(self.petal_length.text())
+        x2 = float(self.petal_width.text())
+        x3 = float(self.sepal_length.text())
+        #x4 = int(self.sepal_width.text())
 
         try:
             file_loaded = open("weight.json", "r")
             weights = json.load(file_loaded)
-            sgnt = SigmoidMultLayerNetwork(4)
+            sgnt = SigmoidMultLayerNetwork(3)
             sgnt.hidden_layer_weights = weights['hidden_layer']
             sgnt.weights = weights['input_layer']
-            result = int(sgnt.test([x1, x2, x3, x4]))
+            result = float(sgnt.test([x1, x2, x3]))
             self.result_label.setText(_translate("Form", str(result), None))
         except Exception as e:
            print("Erro: " + e.message)
 
-        print("x1: %s, x2: %s, x3: %s, x4: %s" %(x1, x2, x3, x4))
+        print("x1: %s, x2: %s, x3: %s" %(x1, x2, x3))
         
 
     def openTrainerScreen(self):
